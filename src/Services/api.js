@@ -9,7 +9,6 @@ let MAX_ITEMS = '';
 
 export function GET_MAX_ITEMS() {
   if(MAX_ITEMS) {
-    console.log('max items is ', MAX_ITEMS);
     return MAX_ITEMS;
   }
 }
@@ -27,7 +26,7 @@ export const getNewItemIDs = async () => {
     .then( ({data}) => data);
 
   MAX_ITEMS = result.length;
-  console.log(MAX_ITEMS);
+  console.log('new items: ',MAX_ITEMS);
   
   return result;
 }
@@ -37,7 +36,7 @@ export const getTopItemIDs = async () => {
     .then( ({data}) => data);
 
   MAX_ITEMS = result.length;
-  console.log(MAX_ITEMS);
+  console.log('top items: ', MAX_ITEMS);
   
   return result;
 }
@@ -47,7 +46,7 @@ export const getBestItemIDs = async () => {
     .then( ({data}) => data);
 
   MAX_ITEMS = result.length;
-  console.log(MAX_ITEMS);
+  console.log('best items:', MAX_ITEMS);
   
   return result;
 }

@@ -1,32 +1,34 @@
-.viewCount {
-  bottom: 0;
-  position: fixed;
-  width: 100%;
-  overflow: hidden;
-  background-color: var(--cream);
-  color: var(--darkBlue);
+.instruction {
+  margin-bottom: 0;
 }
 
-.appName {
-  margin-bottom: 0.3em;
-  font-size: 1.8em;
-}
-
-.buttons a {
-  display: inline-block;
-  margin: 0em 0.5em 0.7em 0;
+.buttons button {
+  margin: 0.7em 0.5em 0.7em 0;
   padding: 0.4em;
-  background-color: var(--slateBlue);
-  color: var(--darkBlue);
-  border: 2px solid #888;
   font-weight: bold;
-  font-size: 0.9em;
-  letter-spacing: 0.7px;
+  font-size: 0.8em;
+  letter-spacing: 0.9px;
   cursor: pointer;
   text-decoration: none;
 }
 
-.buttons span {
-  display: inline-block;
-  margin-bottom: 0.5em;
+.inactive {
+  color: var(--darkBlue);
+  background-color: var(--cream);
+}
+
+.active {
+  color: var(--cream);
+  background-color: var(--darkBlue);
+}
+
+.viewCount {
+  bottom: 0;
+  position: sticky;
+  width: inherit;
+  padding: 0.4em;
+  font-size: 0.9em;
+  background-color: #fff;
+  color: var(--darkBlue);
+  text-align: center;
 }

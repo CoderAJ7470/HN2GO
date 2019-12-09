@@ -10,9 +10,9 @@ import itemsStyles from '../CSS/items.module.css';
 
 const Items = () => {
   const [itemIDs, setItemIDs] = useState([]);
-  const [newItems, setNewStories] = useState(false);
-  const [topItems, setTopStories] = useState(false);
-  const [bestItems, setbestItems] = useState(false);
+  const [newItems, setNewItems] = useState(false);
+  const [topItems, setTopItems] = useState(false);
+  const [bestItems, setBestItems] = useState(false);
   const [type, setType] = useState('New');
 
   let count = useScrollByIncrementing();
@@ -21,29 +21,40 @@ const Items = () => {
     if(newItems) {
       getNewItemIDs().then(data => setItemIDs(data));
       setType('New');
+      document.getElementById('new').classList.add(itemsStyles.active);
+      document.getElementById('top').classList.remove(itemsStyles.active);
+      document.getElementById('popular').classList.remove(itemsStyles.active);
     }
     else if(topItems) {
       getTopItemIDs().then(data => setItemIDs(data));
       setType('Trending');
+      document.getElementById('top').classList.add(itemsStyles.active);
+      document.getElementById('new').classList.remove(itemsStyles.active);
+      document.getElementById('popular').classList.remove(itemsStyles.active);
     }
     else if(bestItems) {
       getBestItemIDs().then(data => setItemIDs(data));
       setType('Popular');
+      document.getElementById('popular').classList.add(itemsStyles.active);
+      document.getElementById('new').classList.remove(itemsStyles.active);
+      document.getElementById('top').classList.remove(itemsStyles.active);
     }
     else {
-      console.log('called default');
       getNewItemIDs().then(data => setItemIDs(data));
+      document.getElementById('new').classList.add(itemsStyles.active);
+      document.getElementById('top').classList.remove(itemsStyles.active);
+      document.getElementById('popular').classList.remove(itemsStyles.active);
     }
   }, [newItems, topItems, bestItems]);
 
   return (
     <>
       <div className={itemsStyles['navWrapper']}>
-        <h2 className={itemsStyles['appName']}>HN2GO - Latest, Trending and Most Popular Stories</h2>
+        <p className={itemsStyles['instruction']}>Search for stories below...</p>
         <div className={itemsStyles['buttons']}>
-          <a href='' id='new' onClick={() => {setNewStories(true); setTopStories(false); setbestItems(false);}}>Latest</a>
-          <a href='' id='top' onClick={() => {setTopStories(true); setNewStories(false); setbestItems(false);}}>Trending</a>
-          <a href='' id='popular' onClick={() => {setbestItems(true); setNewStories(false); setTopStories(false);}}>Most Popular</a>
+          <button className={itemsStyles['inactive']} id='new' onClick={() => {setNewItems(true); setTopItems(false); setBestItems(false);}}>Latest</button>
+          <button className={itemsStyles['inactive']} id='top' onClick={() => {setTopItems(true); setNewItems(false); setBestItems(false);}}>Trending</button>
+          <button className={itemsStyles['inactive']} id='popular' onClick={() => {setBestItems(true); setNewItems(false); setTopItems(false);}}>Most Popular</button>
         </div>
       </div>
       {itemIDs.slice(0, count).map(itemID => <Item key = {itemID} id = {itemID} />)}
