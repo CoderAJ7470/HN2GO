@@ -1,0 +1,2 @@
+// Possibility of future use if item type is required in Story.js
+&nbsp;<span className={storyStyles['itemType']}>{item.type}</span>

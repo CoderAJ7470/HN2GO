@@ -1,0 +1,30 @@
+.pointRight {
+  width: 10px;
+  height: 10px;
+  margin-right: 15px;
+}
+
+.item {
+  color: var(--cream);
+  padding: 0.7em;
+  font-size: 1em;
+  letter-spacing: 1.5px;
+}
+
+.item a {
+  color: var(--cream);
+}
+
+.item:nth-of-type(odd) {
+  background-color: var(--lightBlue);
+}
+
+.item:nth-of-type(even) {
+  background-color: var(--darkBlue);
+}
+
+@media only screen and (min-width: 1024px) {
+  .item {
+    font-size: 1.1em;
+  }
+}
