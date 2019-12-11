@@ -5,7 +5,6 @@
   --slateBlue: #dbe2ef;
   --lightBlue: #3f72af;
   --darkBlue: #112d4e;
-  
 }
 
 html, body {
@@ -14,7 +13,6 @@ html, body {
   box-sizing: border-box;
   text-align: left;
   font-family: 'Arial', sans-serif;
-  /* letter-spacing: 1.5px; */
   width: 90%;
   margin-left: auto;
   margin-right: auto;

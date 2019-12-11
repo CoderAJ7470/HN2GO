@@ -14,7 +14,7 @@ export const useScrollByIncrementing = () => {
 
   const scrollThePage = () => {
     if(window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight || incrementing) {
+      document.documentElement.offsetHeight) {
         setIncrementing(true);
     }
 
@@ -36,7 +36,7 @@ export const useScrollByIncrementing = () => {
         setCount(count + INCREMENT_VALUE);
       }
     }
-  }, [incrementing]);
+  }, [count, incrementing]);
 
   useEffect(() => {
     window.addEventListener('scroll', scrollThePage);

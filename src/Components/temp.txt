@@ -1,2 +1,16 @@
 // Possibility of future use if item type is required in Story.js
 &nbsp;<span className={storyStyles['itemType']}>{item.type}</span>
+
+const showOrHideBTTButton = () => {
+  const buttonDivHeight = document.getElementById('buttonDiv').offsetHeight;
+  const scrollHeight = document.documentElement.scrollHeight;
+
+  if(scrollHeight >= buttonDivHeight) {
+    document.getElementById('bttButton').classList.remove('hideBttButton');
+    document.getElementById('bttButton').classList.add('showBttButton');
+  }
+  else {
+    document.getElementById('bttButton').classList.remove('showBttButton');
+    document.getElementById('bttButton').classList.add('hideBttButton');
+  }
+}

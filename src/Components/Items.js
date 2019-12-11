@@ -1,10 +1,11 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Item from './Item';
 
 import { getNewItemIDs, getTopItemIDs, getBestItemIDs } from '../Services/api';
 import { GET_MAX_ITEMS } from '../Services/api';
 import { useScrollByIncrementing } from '../Services/scroll';
+import { manageButtonClasses } from '../Services/classManager';
 
 import itemsStyles from '../CSS/items.module.css';
 
@@ -18,47 +19,86 @@ const Items = () => {
   let count = useScrollByIncrementing();
 
   useEffect(() => {
+    // let isSubscribed = true;
+
+    window.addEventListener('scroll', showOrHideBTTButton);
+
     if(newItems) {
-      getNewItemIDs().then(data => setItemIDs(data));
+      getNewItemIDs().then(data => {
+        // if(isSubscribed) {
+          setItemIDs(data);
+        // }
+      });
       setType('New');
-      document.getElementById('new').classList.add(itemsStyles.active);
-      document.getElementById('top').classList.remove(itemsStyles.active);
-      document.getElementById('popular').classList.remove(itemsStyles.active);
+      manageButtonClasses('new');
     }
     else if(topItems) {
-      getTopItemIDs().then(data => setItemIDs(data));
+      getTopItemIDs().then(data => {
+        // if(isSubscribed) {
+          setItemIDs(data);
+        // }
+      });
       setType('Trending');
-      document.getElementById('top').classList.add(itemsStyles.active);
-      document.getElementById('new').classList.remove(itemsStyles.active);
-      document.getElementById('popular').classList.remove(itemsStyles.active);
+      manageButtonClasses('top');
     }
     else if(bestItems) {
-      getBestItemIDs().then(data => setItemIDs(data));
+      getBestItemIDs().then(data => {
+        // if(isSubscribed) {
+          setItemIDs(data);
+        // }
+      });
       setType('Popular');
-      document.getElementById('popular').classList.add(itemsStyles.active);
-      document.getElementById('new').classList.remove(itemsStyles.active);
-      document.getElementById('top').classList.remove(itemsStyles.active);
+      manageButtonClasses('popular');
     }
     else {
-      getNewItemIDs().then(data => setItemIDs(data));
-      document.getElementById('new').classList.add(itemsStyles.active);
-      document.getElementById('top').classList.remove(itemsStyles.active);
-      document.getElementById('popular').classList.remove(itemsStyles.active);
+      getNewItemIDs().then(data => {
+        // if(isSubscribed) {
+          setItemIDs(data);
+        // }
+      });
+      manageButtonClasses('new');
     }
+
+    // return () => isSubscribed = false;
   }, [newItems, topItems, bestItems]);
+
+  const showOrHideBTTButton = () => {
+    const buttonDivHeight = document.getElementById('buttonDiv').offsetHeight;
+    const scrollHeight = document.documentElement.scrollTop;
+
+    if(scrollHeight >= buttonDivHeight) {
+      document.getElementById('bttButton').classList.remove(itemsStyles.hideBttButton);
+      document.getElementById('bttButton').classList.add(itemsStyles.showBttButton);
+    }
+
+    if(scrollHeight <= buttonDivHeight) {
+      document.getElementById('bttButton').classList.remove(itemsStyles.showBttButton);
+      document.getElementById('bttButton').classList.add(itemsStyles.hideBttButton);
+    }
+  }
 
   return (
     <>
-      <div className={itemsStyles['navWrapper']}>
-        <p className={itemsStyles['instruction']}>Search for stories below...</p>
+      <div id='buttonDiv' className={itemsStyles['navWrapper']}>
+        <p className={itemsStyles['instruction']}>
+          Search/scroll through stories below. Refresh the page to pull in the latest articles.
+        </p>
         <div className={itemsStyles['buttons']}>
-          <button className={itemsStyles['inactive']} id='new' onClick={() => {setNewItems(true); setTopItems(false); setBestItems(false);}}>Latest</button>
-          <button className={itemsStyles['inactive']} id='top' onClick={() => {setTopItems(true); setNewItems(false); setBestItems(false);}}>Trending</button>
-          <button className={itemsStyles['inactive']} id='popular' onClick={() => {setBestItems(true); setNewItems(false); setTopItems(false);}}>Most Popular</button>
+          <button className={itemsStyles['inactive']} id='new'
+            onClick={() => {setNewItems(true); setTopItems(false); setBestItems(false);}}>Latest</button>
+          <button className={itemsStyles['inactive']} id='top'
+            onClick={() => {setTopItems(true); setNewItems(false); setBestItems(false);}}>Trending</button>
+          <button className={itemsStyles['inactive']} id='popular'
+            onClick={() => {setBestItems(true); setNewItems(false); setTopItems(false);}}>Most Popular</button>
         </div>
       </div>
       {itemIDs.slice(0, count).map(itemID => <Item key = {itemID} id = {itemID} />)}
-      <div className={itemsStyles['viewCount']}>You're viewing {count} of {GET_MAX_ITEMS()} {type} items</div>
+      <div className={itemsStyles['viewCount']}>
+        Showing {count} of {GET_MAX_ITEMS()} {type} items
+        <span id='bttButton' className={`${itemsStyles['hideBttButton']} ${itemsStyles['']}`}>
+          Back to top
+        </span>
+      </div>
     </>
   );
 }

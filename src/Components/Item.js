@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 
 import { getItem } from '../Services/api';
 import { convertUnixTime } from "../Services/timeConverter";
@@ -8,16 +8,12 @@ import itemStyles from '../CSS/item.module.css';
 // Here, we are extracting the value of each ItemID by destructuring the "id";
 // otherwise, we would need to pass in "props" instead of "id" and do
 // props.id down below
-const Item = ({ id }) => {
+const Item = memo(function Item({ id }) {
   const [item, setItem] = useState();
 
   useEffect(() => {
     getItem(id).then(data => data && data.url && setItem(data));
   }, []);
-
-  // if(item) {
-  //   console.log(item);
-  // }
 
   return (
     item && item.url ?
@@ -30,6 +26,6 @@ const Item = ({ id }) => {
         <p>Posted: {convertUnixTime(item.time)}</p>
       </div> : null
   )
-}
+});
 
 export default Item;

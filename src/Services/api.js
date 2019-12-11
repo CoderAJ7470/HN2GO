@@ -13,6 +13,13 @@ export function GET_MAX_ITEMS() {
   }
 }
 
+export const getUser = async userHandle => {
+  const result = await axios.get(`${baseURL}/${userHandle}`)
+    .then( ({ data }) => data);
+  
+  return result;
+}
+
 export const getItem = async storyID => {
   const result = await axios.get(`${itemURL}/${storyID}.json`)
     .then( ({data}) =>  data);
@@ -20,13 +27,11 @@ export const getItem = async storyID => {
   return result;
 }
 
-// "data" inside the parentheses and brace brackets tells axios to filter out only data, not other unwanted junk
 export const getNewItemIDs = async () => {
   const result = await axios.get(newItemsURL)
     .then( ({data}) => data);
 
   MAX_ITEMS = result.length;
-  console.log('new items: ',MAX_ITEMS);
   
   return result;
 }
@@ -36,7 +41,6 @@ export const getTopItemIDs = async () => {
     .then( ({data}) => data);
 
   MAX_ITEMS = result.length;
-  console.log('top items: ', MAX_ITEMS);
   
   return result;
 }
@@ -46,7 +50,6 @@ export const getBestItemIDs = async () => {
     .then( ({data}) => data);
 
   MAX_ITEMS = result.length;
-  console.log('best items:', MAX_ITEMS);
   
   return result;
 }
