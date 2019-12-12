@@ -12,7 +12,12 @@ const Item = memo(function Item({ id }) {
   const [item, setItem] = useState();
 
   useEffect(() => {
-    getItem(id).then(data => data && data.url && setItem(data));
+    let mounted = true;
+
+    getItem(id)
+      .then(data => data && data.url && mounted && setItem(data));
+
+    return () => mounted = false;
   }, []);
 
   return (

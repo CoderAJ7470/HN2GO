@@ -1,10 +1,13 @@
-/* .navWrapper {
-  position: fixed;
+.navWrapper {
+  position: sticky;
   top: 0;
   background-color: #fff;
-} */
+  width: inherit;
+  margin-top: 0.4em;
+}
 
 .instruction {
+  margin-top: 0.5em;
   margin-bottom: 0;
   font-size: 1.3em;
   font-weight: bold;

@@ -9,7 +9,7 @@ export const useScrollByIncrementing = () => {
   const [count, setCount] = useState(INCREMENT_VALUE);
 
   const resetCount = () => {
-    setCount(INCREMENT_VALUE);
+    setCount(20);
   }
 
   const scrollThePage = () => {
@@ -19,6 +19,21 @@ export const useScrollByIncrementing = () => {
     }
 
     setIncrementing(false);
+  };
+
+  function debounce(func, wait, immediate) {
+    let timeout;
+    return function() {
+      let context = this, args = arguments;
+      let later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      let callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
   };
 
   // First useEffect for checking if the user is scrolling the page and incrementing
@@ -39,10 +54,12 @@ export const useScrollByIncrementing = () => {
   }, [count, incrementing]);
 
   useEffect(() => {
-    window.addEventListener('scroll', scrollThePage);
+    window.addEventListener('scroll', debounce(scrollThePage, 250));
+
     document.getElementById('new').addEventListener('click', resetCount);
     document.getElementById('top').addEventListener('click', resetCount);
     document.getElementById('popular').addEventListener('click', resetCount);
+
     return () => window.removeEventListener('scroll', scrollThePage);
   }, []);
 
