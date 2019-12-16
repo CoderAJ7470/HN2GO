@@ -2,7 +2,7 @@
   "name": "hn-stories",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://coderaj7470.github.io/CoderAJ7470/HN2GO",
+  "homepage": "https://coderaj7470.github.io/HN2GO",
   "dependencies": {
     "axios": "^0.19.0",
     "gh-pages": "^2.1.1",
