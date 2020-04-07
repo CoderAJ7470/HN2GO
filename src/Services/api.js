@@ -43,6 +43,8 @@ export const getTopItemIDs = async () => {
     .then( ({data}) => data);
 
   MAX_ITEMS = result.length;
+
+  console.log('I got called');
   
   return result;
 }

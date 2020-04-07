@@ -18,7 +18,7 @@ const Item = memo(function Item({ id }) {
       .then(data => data && data.url && mounted && setItem(data));
 
     return () => mounted = false;
-  }, []);
+  }, [id]);
 
   return (
     item && item.url ?
