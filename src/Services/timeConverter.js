@@ -10,7 +10,10 @@ export const convertUnixTime = unixTimeStamp => {
   let min = dateHelper.getMinutes();
   let timePeriod = '';
 
-  if(hour > 12) {
+  if(hour == 12) {
+    timePeriod = 'p.m.';
+  }
+  else if(hour > 12) {
     hour -= CUTOFF;
     timePeriod = 'p.m.';
   }
