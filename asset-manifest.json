@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/HN2GO/static/css/main.8edfb978.chunk.css",
-    "main.js": "/HN2GO/static/js/main.b906af08.chunk.js",
-    "main.js.map": "/HN2GO/static/js/main.b906af08.chunk.js.map",
+    "main.css": "/HN2GO/static/css/main.1df98db5.chunk.css",
+    "main.js": "/HN2GO/static/js/main.34b11c8e.chunk.js",
+    "main.js.map": "/HN2GO/static/js/main.34b11c8e.chunk.js.map",
     "runtime-main.js": "/HN2GO/static/js/runtime-main.4d2dd189.js",
     "runtime-main.js.map": "/HN2GO/static/js/runtime-main.4d2dd189.js.map",
-    "static/js/2.8ae34d9a.chunk.js": "/HN2GO/static/js/2.8ae34d9a.chunk.js",
-    "static/js/2.8ae34d9a.chunk.js.map": "/HN2GO/static/js/2.8ae34d9a.chunk.js.map",
+    "static/js/2.7de9b6d5.chunk.js": "/HN2GO/static/js/2.7de9b6d5.chunk.js",
+    "static/js/2.7de9b6d5.chunk.js.map": "/HN2GO/static/js/2.7de9b6d5.chunk.js.map",
     "index.html": "/HN2GO/index.html",
-    "precache-manifest.29942052bc2b85a2d151da553f950276.js": "/HN2GO/precache-manifest.29942052bc2b85a2d151da553f950276.js",
+    "precache-manifest.f8e4b6abb3680dba4755839d540ac066.js": "/HN2GO/precache-manifest.f8e4b6abb3680dba4755839d540ac066.js",
     "service-worker.js": "/HN2GO/service-worker.js",
-    "static/css/main.8edfb978.chunk.css.map": "/HN2GO/static/css/main.8edfb978.chunk.css.map"
+    "static/css/main.1df98db5.chunk.css.map": "/HN2GO/static/css/main.1df98db5.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.4d2dd189.js",
-    "static/js/2.8ae34d9a.chunk.js",
-    "static/css/main.8edfb978.chunk.css",
-    "static/js/main.b906af08.chunk.js"
+    "static/js/2.7de9b6d5.chunk.js",
+    "static/css/main.1df98db5.chunk.css",
+    "static/js/main.34b11c8e.chunk.js"
   ]
 }
